@@ -12,6 +12,7 @@ export default class CreateExercise extends Component {
 			duration: 0,
 			date: new Date(),
 			users: [],
+			exercises: [],
 		};
 	}
 
@@ -64,16 +65,42 @@ export default class CreateExercise extends Component {
 			date: this.state.date,
 		};
 
-		console.log(exercise);
+		// console.log(exercise);
 		axios
 			.post(
 				'https://warm-beyond-25693.herokuapp.com/exercises/add/',
 				exercise
 			)
-			.then((response) =>
-				console.log(response.data)
-			);
-		// window.location = '/';
+			// .then(async () => {
+			// 	try {
+			// 		const response = await axios.get(
+			// 			'https://warm-beyond-25693.herokuapp.com/exercises/'
+			// 		);
+			// 		this.setState({
+			// 			exercises: response.data,
+			// 		});
+			// 		console.log(this.state.exercises);
+			// 	} catch (err) {
+			// 		console.log(err);
+			// 	}
+			// })
+			.then((res) => {
+				window.location = '/success';
+			})
+			.catch((err) => console.log(err));
+
+		this.setState({
+			username: '',
+			description: '',
+			duration: 0,
+			date: new Date(),
+			// users: [],
+		});
+		// axios
+		// 	.get(
+		// 		'https://warm-beyond-25693.herokuapp.com/exercises/'
+		// 	)
+		// 	.then((res) => console.log(res.data));
 	};
 
 	render() {

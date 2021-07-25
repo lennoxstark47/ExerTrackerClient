@@ -18,7 +18,7 @@ export default class EditExercise extends Component {
 	componentDidMount() {
 		axios
 			.get(
-				'https://warm-beyond-25693.herokuapp.com/exercises' +
+				'https://warm-beyond-25693.herokuapp.com/exercises/' +
 					this.props.match.params.id
 			)
 			.then((response) => {
@@ -37,9 +37,7 @@ export default class EditExercise extends Component {
 			)
 			.then((res) => {
 				this.setState({
-					users: res.data.map(
-						(user) => user.username
-					),
+					users: res.data.map((user) => user.username),
 				});
 			})
 			.catch((err) => console.log(err));
@@ -79,17 +77,16 @@ export default class EditExercise extends Component {
 			date: this.state.date,
 		};
 
-		console.log(exercise);
-
 		axios
 			.post(
-				'/exercises/update' +
+				'https://warm-beyond-25693.herokuapp.com/exercises/update/' +
 					this.props.match.params.id,
 				exercise
 			)
-			.then((res) => console.log(res.data));
-
-		window.location = '/';
+			.then((res) => {
+				console.log(res.data);
+				window.location = '/';
+			});
 	};
 
 	render() {
@@ -104,9 +101,7 @@ export default class EditExercise extends Component {
 							className='form-control'
 							value={this.state.username}
 							onChange={this.onChangeUsername}>
-							{this.state.users.map(function (
-								user
-							) {
+							{this.state.users.map(function (user) {
 								return (
 									<option key={user} value={user}>
 										{user}

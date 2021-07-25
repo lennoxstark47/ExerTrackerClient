@@ -7,6 +7,7 @@ import ExerciseList from './components/exercise-list.component';
 import EditExercise from './components/edit-exercise.component';
 import CreateExercise from './components/create-exercise.component';
 import CreateUser from './components/create-user.component';
+import confirmation from './components/confirmation';
 
 export default class App extends Component {
 	render() {
@@ -29,6 +30,10 @@ export default class App extends Component {
 						component={CreateExercise}
 					/>
 					<Route path='/user' component={CreateUser} />
+					<Route
+						path='/success'
+						component={confirmation}
+					/>
 				</div>
 			</Router>
 		);
